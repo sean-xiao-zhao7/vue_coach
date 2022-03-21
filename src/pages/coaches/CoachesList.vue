@@ -67,6 +67,12 @@ export default {
     setFilters(newFilters) {
       this.activeFilters = newFilters;
     },
+    setCoaches() {
+      this.$store.dispatch('coaches/setCoaches');
+    },
+  },
+  created() {
+    this.setCoaches();
   },
 };
 </script>
