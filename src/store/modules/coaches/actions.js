@@ -33,6 +33,9 @@ export default {
       .then((res) => {
         if (res.ok) {
           return res.json();
+        } else {
+          const error = new Error(res.message || 'Could not get coaches data.');
+          throw error;
         }
       })
       .then((data) => {
@@ -44,6 +47,7 @@ export default {
             description: data[key].description,
             hourlyRate: data[key].hourlyRate,
             areas: data[key].areas,
+            id: key,
           });
         }
         context.commit('setCoaches', coaches);
