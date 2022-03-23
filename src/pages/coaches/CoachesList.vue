@@ -7,7 +7,10 @@
       <base-card>
         <div class="controls">
           <base-button mode="outline" @click="setCoaches">Refresh</base-button>
-          <base-button link to="/register" v-if="!isCoach"
+          <base-button link to="/auth?redirect=register" v-if="!isLoggedIn"
+            >Login</base-button
+          >
+          <base-button link to="/register" v-if="!isCoach && isLoggedIn"
             >Register</base-button
           >
         </div>
@@ -70,6 +73,9 @@ export default {
     },
     isCoach() {
       return this.$store.getters['coaches/isCoach'];
+    },
+    isLoggedIn() {
+      return this.$store.getters['isLoggedIn'];
     },
   },
   methods: {

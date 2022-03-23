@@ -12,6 +12,9 @@ import TheHeader from './components/layout/Header.vue';
 
 export default {
   components: { TheHeader },
+  created() {
+    this.$store.dispatch('autoLogin');
+  },
 };
 </script>
 

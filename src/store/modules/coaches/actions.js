@@ -8,13 +8,16 @@ export default {
       areas: formData.areas,
     };
     const newId = new Date().getTime();
-    fetch(`${process.env.VUE_APP_FBBASE}/${newId}.json`, {
-      method: 'PUT',
-      body: JSON.stringify(finalCoachData),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }).then((res) => {
+    fetch(
+      `${process.env.VUE_APP_FBBASE}/${newId}.json?auth=${context.rootGetters.token}`,
+      {
+        method: 'PUT',
+        body: JSON.stringify(finalCoachData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    ).then((res) => {
       if (res.ok) {
         context.commit('registerCoachMutation', {
           ...finalCoachData,
